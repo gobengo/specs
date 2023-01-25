@@ -139,8 +139,9 @@ A logical IPNS record is a data structure containing the following fields:
   - Represents the current version of the record (starts at 0).
   - Implementations MUST include this value in both `IpnsEntry.sequence` and inside the DAG-CBOR document at `IpnsEntry.data[sequence]`.
 - **TTL** (uint64)
-  - A hint for how long the record should be cached before going back to, for instance the DHT, in order to check if it has been updated.
+  - A hint for how long (in nanoseconds) the record should be cached before going back to, for instance the DHT, in order to check if it has been updated.
   - Implementations MUST include this value in both `IpnsEntry.ttl` and inside the DAG-CBOR document at `IpnsEntry.data[ttl]`.
+  - Suggested default: 12 hours (43 200 000 000 000 nanosecdonds).
 - **Public Key** (bytes)
   - Public key used to sign this record.
     - If public key is small enough to fit in IPNS name (e.g., Ed25519 keys inlined using `identity` multihash), `IpnsEntry.pubKey` field is redundant and MAY be skipped to save space.
